@@ -31,6 +31,8 @@
 #include <server/server.h>
 #include <url.h>
 
+#define is_error(ptr) (ptr == NULL)
+
 struct ucontent {
 	char *data;
 	size_t len;
