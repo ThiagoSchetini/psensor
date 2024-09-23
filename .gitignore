@@ -1,0 +1,76 @@
+# Compiled object files
+*.o
+*.lo
+*.la
+*.al
+
+# Compiled dynamic libraries
+*.so
+*.so.*
+*.dylib
+
+# Compiled static libraries
+*.a
+*.lib
+
+# Executable files
+psensor
+psensor-server
+psensor.1
+psensor-server.1
+
+# Generated files from Autotools
+/Makefile
+/Makefile.in
+/config.h
+/config.h.in
+/configure
+/aclocal.m4
+/autom4te.cache/
+/compile
+/config.guess
+/config.sub
+/depcomp
+/install-sh
+/missing
+/libtool
+/stamp-h1
+
+# Ctags or etags files
+tags
+TAGS
+
+# Build directories
+/build/
+/dist/
+/bin/
+/lib/
+/obj/
+/out/
+/.venv/
+
+# Debugging files
+*.gch
+*.dSYM/
+*.swp
+*.swo
+
+# Logs and database
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Package management files
+.DS_Store
+.idea/
+.vscode/
+*.bak
+
+# Generated documentation
+/docs/
+*.html
+*.pdf
+
+# Ignore any personal test files
+test/
