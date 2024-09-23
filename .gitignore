@@ -67,19 +67,16 @@ TAGS
 po/*.gmo
 po/stamp-po
 
-# Object files
-src/*.o
-
 # Static libraries and binary files
+src/*.o
 src/lib/*.a
+src/lib/*.o
+src/server/*.o
 src/psensor
 src/psensor.1
 src/psensor.gschema.valid
 src/server/psensor-server
 src/server/psensor-server.1
-
-# Other generated files in src/server
-src/server/*.o
 
 # UI and main binaries
 src/ui*.o
