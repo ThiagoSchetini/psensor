@@ -305,14 +305,14 @@ create_response(const char *nurl, const char *method, unsigned int *rp_code)
 					       MHD_RESPMEM_MUST_FREE);
 }
 
-static int cbk_http_request(void *cls,
-			    struct MHD_Connection *connection,
-			    const char *url,
-			    const char *method,
-			    const char *version,
-			    const char *upload_data,
-			    size_t *upload_data_size,
-			    void **ptr)
+enum MHD_Result cbk_http_request(void *cls, 
+					struct MHD_Connection *connection, 
+					const char *url,
+					const char *method,
+					const char *version,
+					const char *upload_data,
+					size_t *upload_data_size,
+					void **ptr)
 {
 	static int dummy;
 	struct MHD_Response *response;
@@ -452,9 +452,9 @@ int main(int argc, char *argv[])
 		log_err(_("No sensors detected."));
 
 	d = MHD_start_daemon(MHD_USE_THREAD_PER_CONNECTION,
-			     port,
-			     NULL, NULL, &cbk_http_request, server_data.sensors,
-			     MHD_OPTION_END);
+						port,
+						NULL, NULL, &cbk_http_request, &server_data,
+						MHD_OPTION_END);
 	if (!d) {
 		log_err(_("Failed to create Web server."));
 		exit(EXIT_FAILURE);

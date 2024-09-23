@@ -51,39 +51,41 @@ static void udisks_data_free(void *data)
 
 static void smart_update(struct psensor *s, UDisksDriveAta *ata)
 {
-	GVariant *variant;
-	gboolean ret;
-	struct timeval t;
-	struct udisks_data *data;
+    GVariant *variant;
+    gboolean ret;
+    struct timeval t;
+    struct udisks_data *data;
 
-	data = s->provider_data;
+    data = s->provider_data;
 
-	if (gettimeofday(&t, NULL) != 0) {
-		log_err("%s: %s", PROVIDER_NAME, _("gettimeofday failed."));
-		return;
-	}
+    if (gettimeofday(&t, NULL) != 0) {
+        log_err("%s: %s", PROVIDER_NAME, _("gettimeofday failed."));
+        return;
+    }
 
-	if (data->last_smart_update.tv_sec
-	    &&
-	    (t.tv_sec - data->last_smart_update.tv_sec < SMART_UPDATE_INTERVAL))
-		return;
+    if (data->last_smart_update.tv_sec
+        &&
+        (t.tv_sec - data->last_smart_update.tv_sec < SMART_UPDATE_INTERVAL))
+        return;
 
-	log_fct("%s: update SMART data for %s", PROVIDER_NAME, data->path);
+    log_fct("%s: update SMART data for %s", PROVIDER_NAME, data->path);
 
-	variant = g_variant_new_parsed("{'nowakeup': %v}",
-				       g_variant_new_boolean(TRUE));
+    variant = g_variant_new_parsed("{'nowakeup': %v}",
+                                   g_variant_new_boolean(TRUE));
 
-	ret = udisks_drive_ata_call_smart_update_sync(ata,
-						      variant,
-						      NULL,
-						      NULL);
+    ret = udisks_drive_ata_call_smart_update_sync(ata,
+                                                  variant,
+                                                  NULL,
+                                                  NULL);
 
-	if (!ret)
-		log_fct("%s: SMART update failed for %s",
-			PROVIDER_NAME,
-			data->path);
+    if (!ret) {
+        log_fct("%s: SMART update failed for %s",
+                PROVIDER_NAME,
+                data->path);
+    }
 
-		data->last_smart_update = t;
+    // Always set the last_smart_update regardless of whether SMART update succeeded or failed.
+    data->last_smart_update = t;
 }
 
 void udisks2_psensor_list_update(struct psensor **sensors)
