@@ -146,6 +146,31 @@ instructions. Reboot or activate the kernel modules which have
 been found.
 6. Run: +psensor+
 
+Compilation and Installation Steps on Archlinux
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+0. sudo pacman -S libappindicator-gtk3
+1. git clone git@github.com:ThiagoSchetini/psensor.git
+2. (optional, if not works) autoreconf -fvi
+3. ./configure
+
+Make and bypass the .1 errors:
+------------------------------
+4. make
+5. mv src/server/psensor-server src/server/psensor-server.1
+6. make
+7. mv src/psensor src/psensor.1
+8. make
+
+Finally:
+--------
+A. sudo make install -j8
+B. sensors-detect
+C. follow instructions of sensors, put YES and persist lm-sensors in the end.
+D. reboot
+E. psensor
+
+
 ATI/AMD GPU Support
 ~~~~~~~~~~~~~~~~~~~
 
