@@ -25,6 +25,15 @@ src/lib/.deps/
 src/server/.deps/
 tests/.deps/
 
+# Test compiled files
+tests/test*.o
+tests/test*.trs
+tests/test-io-dir-list
+tests/test-psensor-type-to-unit-str
+tests/test-psensor-value-to-str
+tests/test-url-encode
+tests/test-url-normalize
+
 # Autotools generated files
 /aclocal.m4
 /autom4te.cache/
