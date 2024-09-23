@@ -62,3 +62,30 @@ TAGS
 .idea/
 .vscode/
 *.bak
+
+# Ignore translation files
+po/*.gmo
+po/stamp-po
+
+# Object files
+src/*.o
+
+# Static libraries and binary files
+src/lib/*.a
+src/psensor
+src/psensor.1
+src/psensor.gschema.valid
+src/server/psensor-server
+src/server/psensor-server.1
+
+# Other generated files in src/server
+src/server/*.o
+
+# UI and main binaries
+src/ui*.o
+src/cfg.o
+src/graph.o
+src/notify_cmd.o
+src/pxdg.o
+src/rsensor.o
+src/main.o
